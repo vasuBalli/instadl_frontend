@@ -3,7 +3,7 @@ import { Download, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 
 const API_BASE =
   (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ||
-  "http://13.126.201.28";
+  "http://13.126.201.28/api/";
 
 type VideoItem = {
   index: number;
