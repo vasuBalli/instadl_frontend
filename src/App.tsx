@@ -81,7 +81,7 @@ export default function App() {
           </div>
           <div className="border-t border-gray-800/50 pt-8">
             <p className="text-gray-500 text-sm text-center">
-              &copy; 2025 InstagramDownloader. All rights reserved. This is a demonstration application.
+              &copy; 2025 InstaDL. All rights reserved. This is a demonstration application.
             </p>
           </div>
         </div>
