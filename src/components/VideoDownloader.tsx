@@ -41,19 +41,31 @@ export function VideoDownloader() {
     }
 
     setLoading(true);
+
     try {
       const res = await fetch(`${API_BASE}/api/info/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
       });
+
       const data = await res.json();
 
-      if (!data.ok || !data.items.length) {
+      if (!data.ok) {
         throw new Error(data.message || "Video not found");
       }
 
-      setItems(data.items);
+      // Django returns SINGLE video response, so convert it to items[]
+      const wrappedItems: VideoItem[] = [
+        {
+          index: 0,
+          title: data.title,
+          duration: data.duration,
+          download_url: data.download_url
+        }
+      ];
+
+      setItems(wrappedItems);
       setSelectedIndex(0);
       setSuccess(true);
 
@@ -64,41 +76,45 @@ export function VideoDownloader() {
     }
   };
 
+
   const downloadVideo = async () => {
     if (!selected) return;
+
     setDownloading(true);
     setError("");
 
-    const finalURL = `${API_BASE}${selected.download_url}/`;
+    const finalURL = `${API_BASE}${selected.download_url}`;
 
     try {
+      // Try direct fetch
       const response = await fetch(finalURL);
+
       if (!response.ok) throw new Error("Server stream fallback");
 
       const contentType = response.headers.get("Content-Type");
-
-      // If Server returned stream → directly allow fallback to redirect
+      
       if (!contentType?.includes("application/json")) {
         throw new Error("fallback");
       }
 
       const blob = await response.blob();
-      if (blob.size < 2000) throw new Error("fallback");
+      if (blob.size < 1000) throw new Error("fallback");
 
-      const urlBlob = window.URL.createObjectURL(blob);
+      const blobUrl = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = urlBlob;
+      a.href = blobUrl;
       a.download = selected.title.replace(/[^a-z0-9]/gi, "_") + ".mp4";
       a.click();
-      window.URL.revokeObjectURL(urlBlob);
+      window.URL.revokeObjectURL(blobUrl);
 
     } catch {
-      console.log("Client fetch failed → using server stream");
-      window.location.href = finalURL; // fallback guaranteed to download
+      // fallback → server handles streaming
+      window.location.href = finalURL;
     } finally {
       setDownloading(false);
     }
   };
+
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -113,6 +129,7 @@ export function VideoDownloader() {
             placeholder="Paste Instagram video URL here"
             className="flex-1 px-4 py-3 bg-gray-950 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
           />
+
           <button
             type="submit"
             disabled={loading}
@@ -147,27 +164,6 @@ export function VideoDownloader() {
         )}
       </form>
 
-      {/* Multiple video selection */}
-      {items.length > 1 && (
-        <div className="bg-gray-900 border border-gray-800 p-8 mb-6">
-          <p className="text-gray-300 text-sm mb-3">Multiple clips detected:</p>
-          <div className="flex flex-col gap-2">
-            {items.map((item, idx) => (
-              <button
-                key={item.index}
-                onClick={() => setSelectedIndex(idx)}
-                className={`p-3 text-left border ${
-                  idx === selectedIndex
-                    ? "border-blue-600 bg-blue-600/20 text-white"
-                    : "border-gray-700 hover:border-gray-600 text-gray-300"
-                }`}
-              >
-                {item.title}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Download Button */}
       {selected && (
