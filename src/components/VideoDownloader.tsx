@@ -42,7 +42,7 @@ export function VideoDownloader() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/info`, {
+      const res = await fetch(`${API_BASE}/api/info/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -69,7 +69,7 @@ export function VideoDownloader() {
     setDownloading(true);
     setError("");
 
-    const finalURL = `${API_BASE}${selected.download_url}`;
+    const finalURL = `${API_BASE}${selected.download_url}/`;
 
     try {
       const response = await fetch(finalURL);
