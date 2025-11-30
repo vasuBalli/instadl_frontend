@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Download, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 
-const API_BASE =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ||
-  "getdownload.site";
+const API_BASE ="getdownload.site";
+  // (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ||
+  // "getdownload.site";
 
 type VideoItem = {
   index: number;
