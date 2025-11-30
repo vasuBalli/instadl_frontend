@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Download, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 
-const API_BASE ="getdownload.site";
+const API_BASE = "https://getdownload.site";
   // (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ||
   // "getdownload.site";
 
@@ -43,7 +43,7 @@ export function VideoDownloader() {
     setLoading(true);
 
     try {
-      const res = await fetch(`getdownload.site/api/info/`, {
+      const res = await fetch(`${API_BASE}/api/info/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -83,7 +83,7 @@ export function VideoDownloader() {
     setDownloading(true);
     setError("");
 
-    const finalURL = `getdownload.site${selected.download_url}`;
+    const finalURL = `${API_BASE}${selected.download_url}`;
 
     try {
       // Try direct fetch
