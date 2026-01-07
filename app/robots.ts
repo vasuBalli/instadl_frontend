@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://instagramdownloader.com'; // Replace with your actual domain
+  const baseUrl = 'https://getdownload.site'; // Replace with your actual domain
 
   return {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/api/'],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: 'Instagram Video Downloader - Fast & Reliable | InstagramDownloader',
@@ -66,12 +67,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          name="google-site-verification"
+          content="PASTE_YOUR_VERIFICATION_CODE_HERE"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>{children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

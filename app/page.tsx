@@ -1,5 +1,6 @@
 import { Video } from 'lucide-react';
-import { VideoDownloader } from '@/components/VideoDownloader';
+// import { VideoDownloader } from '@/components/VideoDownloader';
+import VideoDownloader from '@/components/VideoDownloader';
 import { Features } from '@/components/Features';
 import { HowItWorks } from '@/components/HowItWorks';
 
@@ -12,7 +13,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-blue-600 flex items-center justify-center">
-              {/* <Video className="w-5 h-5 text-white" /> */}
+              <Video className="w-5 h-5 text-white" />
             </div>
             <span className="text-white tracking-tight">InstagramDownloader</span>
           </div>
@@ -74,15 +75,16 @@ export default function Home() {
             <div>
               <h3 className="text-white text-sm mb-4">Legal</h3>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
+                <li><a href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="/dmca" className="text-gray-400 hover:text-white transition-colors">DMCA</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800/50 pt-8">
             <p className="text-gray-500 text-sm text-center">
-              &copy; 2025 InstagramDownloader. All rights reserved. This is a demonstration application.
+              &copy; 2025 getdownload.site. All rights reserved. getdownload.site is not affiliated with Instagram or Meta Platforms, Inc.
+
             </p>
           </div>
         </div>
