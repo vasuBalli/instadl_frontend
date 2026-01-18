@@ -12,9 +12,9 @@ export default function Home() {
       <header className="border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-blue-600 flex items-center justify-center">
+            {/* <div className="w-9 h-9 bg-blue-600 flex items-center justify-center">
               <Video className="w-5 h-5 text-white" />
-            </div>
+            </div> */}
             <span className="text-white tracking-tight">InstagramDownloader</span>
           </div>
           <nav className="hidden md:flex gap-8 items-center">

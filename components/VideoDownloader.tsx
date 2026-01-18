@@ -150,11 +150,16 @@ export default function VideoDownloader() {
         )}
 
         {success && (
-          <div className="mt-4 p-4 bg-blue-950/50 border border-blue-900/50 flex gap-3">
-            <CheckCircle className="w-5 h-5 text-blue-400 mt-0.5" />
-            <p className="text-blue-400 text-sm">Ready to download</p>
-          </div>
-        )}
+  <div className="mt-6 p-4 bg-blue-950/50 border border-blue-900/50">
+    <div className="flex flex-col items-center text-center gap-2">
+      <CheckCircle className="w-6 h-6 text-blue-400" />
+      <p className="text-blue-400 text-sm font-medium">
+        Ready to download
+      </p>
+    </div>
+  </div>
+)}
+
       </form>
 
       {/* Preview + Download */}

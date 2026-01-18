@@ -3,7 +3,7 @@ import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
-  title: 'Instagram Video Downloader - Fast & Reliable | InstagramDownloader',
+  title: 'Instagram Video Downloader - Fast & Reliable | GetDownload',
   description:
     'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
   keywords: [
@@ -12,21 +12,36 @@ export const metadata: Metadata = {
     'download instagram reels',
     'save instagram videos',
     'instagram video saver',
+    'instagram video downloader by link'
   ],
-  authors: [{ name: 'InstagramDownloader' }],
+  authors: [{ name: 'GetDownload' }],
+
+  // ✅ CANONICAL URL (CRITICAL)
+  alternates: {
+    canonical: 'https://getdownload.site',
+  },
+
+  // ✅ GOOGLE SEARCH CONSOLE VERIFICATION
+  verification: {
+    google: 'se2QcF-_clXUOh_k_IGlDUqaqPtJcvpaqO-4hVeJegc',
+  },
+
   openGraph: {
     title: 'Instagram Video Downloader - Fast & Reliable',
     description:
       'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
+    url: 'https://getdownload.site',
+    siteName: 'GetDownload',
     type: 'website',
-    siteName: 'InstagramDownloader',
   },
+
   twitter: {
     card: 'summary_large_image',
     title: 'Instagram Video Downloader - Fast & Reliable',
     description:
       'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
   },
+
   robots: {
     index: true,
     follow: true,
@@ -46,7 +61,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'InstagramDownloader',
+    name: 'GetDownload',
     description:
       'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
     applicationCategory: 'MultimediaApplication',
@@ -62,21 +77,20 @@ export default function RootLayout({
       'Secure and private',
       'Cross-platform support',
     ],
+    url: 'https://getdownload.site',
   };
 
   return (
     <html lang="en">
       <head>
-        <meta
-          name="google-site-verification"
-          content="PASTE_YOUR_VERIFICATION_CODE_HERE"
-        />
+        {/* ✅ Structured Data for Google */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}
+      <body>
+        {children}
         <CookieBanner />
       </body>
     </html>
