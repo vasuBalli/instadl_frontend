@@ -31,7 +31,7 @@ jobs:
 
       # 5️⃣ Copy build to EC2
       - name: Deploy to EC2 via rsync
-        uses: burnett01/rsync-deployments@v7
+        uses: burnett01/rsync-deployments@v5.2
         with:
           switches: -avzr --delete
           path: |
