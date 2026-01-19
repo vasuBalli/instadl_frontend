@@ -1,4 +1,4 @@
-name: 🚀 Deploy Next.js App to AWS EC2
+name: Deploy Next.js to EC2
 
 on:
   push:
@@ -6,50 +6,54 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧩 Checkout repository
+      # 1️⃣ Checkout source
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js
+      # 2️⃣ Node setup
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
+          cache: "npm"
 
-      - name: 📦 Install dependencies
-        run: npm install
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm ci
 
-      - name: 🏗️ Build Next.js app
+      # 4️⃣ Build Next.js
+      - name: Build project
         run: npm run build
 
-      - name: 🔐 Deploy to EC2
+      # 5️⃣ Copy build to EC2
+      - name: Deploy to EC2 via rsync
+        uses: burnett01/rsync-deployments@v7
+        with:
+          switches: -avzr --delete
+          path: |
+            .next
+            public
+            package.json
+            package-lock.json
+            next.config.*
+          remote_path: /home/ubuntu/instadl_frontend
+          remote_host: ${{ secrets.EC2_HOST }}
+          remote_user: ubuntu
+          remote_key: ${{ secrets.EC2_SSH_KEY }}
+
+      # 6️⃣ Restart PM2 on EC2
+      - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "🌍 Navigating to Next.js app directory..."
-            cd /home/ubuntu/memeverse
-
-            echo "🔄 Pulling latest code..."
-            git fetch origin main
-            git reset --hard origin/main
-
-            echo "📦 Installing dependencies..."
-            npm install
-
-            echo "🏗️ Building Next.js app..."
-            npm run build
-
-            echo "🔁 Restarting Next.js app (PM2)..."
-            pm2 restart instadl_frontend || pm2 start npm --name "instadl_frontend" -- start
-
-            echo "🔁 Reloading Nginx..."
-            sudo nginx -t
-            sudo systemctl reload nginx
-
-      - name: ✅ Deployment Finished
-        run: echo "Next.js app successfully deployed to EC2"
+            cd /home/ubuntu/instadl_frontend
+            npm ci --omit=dev
+            pm2 restart instadl-frontend || pm2 start npm --name instadl-frontend -- start
+            pm2 save
