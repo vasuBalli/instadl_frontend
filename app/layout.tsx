@@ -3,7 +3,7 @@ import './globals.css';
 import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
-  title: 'Instagram Video Downloader - Fast & Reliable | GetDownload',
+  title: 'Instagram Video Downloader - Download Videos by Link | GetDownload',
   description:
     'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
   keywords: [

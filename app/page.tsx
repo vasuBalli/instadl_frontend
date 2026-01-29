@@ -15,14 +15,14 @@ export default function Home() {
             <div className="w-9 h-9 bg-blue-600 flex items-center justify-center">
               <Video className="w-5 h-5 text-white" />
             </div>
-            <span className="text-white tracking-tight">InstagramDownloader</span>
+            <span className="text-white tracking-tight">Instagram Downloader</span>
           </div>
           <nav className="hidden md:flex gap-8 items-center">
             <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">Features</a>
             <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors text-sm">How It Works</a>
-            <button className="px-4 py-2 bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors">
+            {/* <button className="px-4 py-2 bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors">
               Get Started
-            </button>
+            </button> */}
           </nav>
         </div>
       </header>
@@ -31,7 +31,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-6xl text-white mb-6 tracking-tight">
-            Download Instagram Videos
+            Instagram Video Downloader
             <br />
             <span className="text-gray-400">Fast and Reliable</span>
           </h1>
@@ -58,10 +58,13 @@ export default function Home() {
                 <div className="w-8 h-8 bg-blue-600 flex items-center justify-center">
                   <Video className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-white tracking-tight">InstagramDownloader</span>
+                <span className="text-white tracking-tight">Instagram Downloader</span>
               </div>
               <p className="text-gray-400 text-sm max-w-md">
-                The most reliable Instagram video downloader. Fast, secure, and easy to use for all your downloading needs.
+                GetDownload is a free Instagram video downloader that allows you to
+    download Instagram reels, videos, and posts using a direct link.
+    Simply copy the Instagram video URL and paste it into the box above
+    to download videos in HD quality.
               </p>
             </div>
             <div>
