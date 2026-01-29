@@ -114,33 +114,54 @@ export default function VideoDownloader() {
 
       {/* Input Form */}
       <form onSubmit={handleDownload} className="bg-gray-900 border border-gray-800 p-8 mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="Paste Instagram video URL here"
-            className="flex-1 px-4 py-3 bg-gray-950 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
-          />
+        <div className="flex flex-col gap-4 md:flex-row md:items-center">
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-8 py-3 bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 disabled:opacity-50"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Processing
-              </>
-            ) : (
-              <>
-                <Download className="w-5 h-5" />
-                Fetch Video
-              </>
-            )}
-          </button>
-        </div>
+  {/* input */}
+  <div className="flex-1">
+    <input
+      type="text"
+      value={url}
+      onChange={(e) => setUrl(e.target.value)}
+      placeholder="Paste Instagram video URL here"
+      className="w-full px-4 py-3 bg-gray-950 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-blue-600"
+    />
+  </div>
+
+  {/* button */}
+  <div className="md:flex-none">
+    <button
+      type="submit"
+      disabled={loading}
+      className="
+        px-8 py-3
+    bg-blue-600 text-white hover:bg-blue-700
+    flex items-center gap-2
+    disabled:opacity-50
+
+    w-full            /* mobile → match input width */
+    justify-center
+
+    md:w-auto         /* desktop → original size */
+    md:flex-none
+      "
+    >
+      {loading ? (
+        <>
+          <Loader2 className="w-5 h-5 animate-spin" />
+          Processing
+        </>
+      ) : (
+        <>
+          <Download className="w-5 h-5" />
+          Fetch Video
+        </>
+      )}
+    </button>
+  </div>
+
+</div>
+
+          
 
         {error && (
           <div className="mt-4 p-4 bg-red-950/50 border border-red-900/50 flex gap-3">
@@ -166,7 +187,7 @@ export default function VideoDownloader() {
       {videoData && (
         <div className="bg-gray-900 border border-gray-800 p-8">
           <div className="grid md:grid-cols-[280px,1fr] gap-8">
-            <div>
+            {/* <div>
               {videoData.thumbnail ? (
                 <img
                   src={videoData.thumbnail}
@@ -177,8 +198,9 @@ export default function VideoDownloader() {
                 <div className="w-full aspect-[9/16] bg-gray-800 flex items-center justify-center text-gray-400">
                   No Preview
                 </div>
-              )}
-            </div>
+              )
+              }
+            </div> */}
 
             <div className="flex flex-col justify-between">
               <div>

@@ -25,22 +25,37 @@ export const metadata: Metadata = {
   verification: {
     google: 'se2QcF-_clXUOh_k_IGlDUqaqPtJcvpaqO-4hVeJegc',
   },
-
-  openGraph: {
-    title: 'Instagram Video Downloader - Fast & Reliable',
-    description:
-      'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
-    url: 'https://getdownload.site',
-    siteName: 'GetDownload',
-    type: 'website',
+   icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+
+ openGraph: {
+  title: 'Instagram Video Downloader - Fast & Reliable',
+  description:
+    'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
+  url: 'https://getdownload.site',
+  siteName: 'GetDownload',
+  type: 'website',
+  images: [
+    {
+      url: 'https://getdownload.site/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Instagram Video Downloader',
+    },
+  ],
+},
+
 
   twitter: {
-    card: 'summary_large_image',
-    title: 'Instagram Video Downloader - Fast & Reliable',
-    description:
-      'Download Instagram videos and reels in high quality. Fast, secure, and easy to use.',
-  },
+  card: 'summary_large_image',
+  title: 'Instagram Video Downloader - Fast & Reliable',
+  description:
+    'Download Instagram videos and reels in high quality.',
+  images: ['https://getdownload.site/og-image.png'],
+},
 
   robots: {
     index: true,
